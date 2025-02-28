@@ -21,7 +21,10 @@ export default function Home({ pokemon }: any) {
   const filteredPokemon = pokemon?.filter((pokemon: any) => {
     return pokemon.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
-
+type Pokemon = {
+  name: string;
+  url: string;
+};
 
   return (
     <div className="flex flex-col items-center max-w-[80%] mx-auto bg-gray-100 text-gray-900 pt-[100px] pb-[100px]" >
@@ -35,7 +38,7 @@ export default function Home({ pokemon }: any) {
         style={{ marginBottom: "10px", padding: "5px", paddingLeft: "10px" }}
       />
       <ul>
-        {filteredPokemon?.map((pokemon: any, index: any) => {
+        {filteredPokemon?.map((pokemon: Pokemon, index: number) => {
 
           return (
             <div key={index}>
@@ -47,6 +50,9 @@ export default function Home({ pokemon }: any) {
             </div>
           )
         })}
+        {
+          filteredPokemon?.length === 0 && <p>No Pokemon Found</p>
+        }
       </ul>
     </div>
   );
