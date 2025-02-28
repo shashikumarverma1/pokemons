@@ -1,98 +1,115 @@
-
+import { useRouter } from "next/router";
+import Image from "next/image";
 export async function getServerSideProps(context: { params: { id: string; }; }) {
-    const { id } = context.params; 
+    const { id } = context.params;
 
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await res.json();
 
     return {
-        props: { pokemonDetails: data }, 
+        props: { pokemonDetails: data },
     };
 }
 
-type pokemonDetails = {    
+type pokemonDetails = {
     abilities: object[];
     types: object[];
     stats: object[];
-    moves: object[];  
+    moves: object[];
 }
 
 const PokemonDetail = ({ pokemonDetails }: { pokemonDetails: pokemonDetails }) => {
-console.log(pokemonDetails , "pokemonDetails")
-type Pokemon = {
-    ability?: {
-      name?: string;
+    console.log(pokemonDetails, "pokemonDetails")
+    const router = useRouter();
+    const { name, id } = router.query;
+    type Pokemon = {
+        ability?: {
+            name?: string;
+        };
+        type?: {
+            name?: string;
+        };
+        stat?: {
+            name?: string;
+        };
     };
-    type?: {
-      name?: string;
-    };
-    stat?: {
-      name?: string;
-    };
-  };
     return (
-        <div className="  flex flex-col items-center max-w-[80%] mx-auto bg-gray-100 text-gray-900 pt-[100px] pb-[100px]" >
+        <div className="px-1 sm:px-3 lg:px-15 pt-10 pb-10" >
+            <h1 className="pb-1 text-gray-900 font-bold px-5 text-2xl ">{name}</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 align-middle pt-2 px-5 ">
+                <Image
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                    alt={`${name}`}
+                    width={200}
+                    height={200}
+                className="align-center bg-gray-200 rounded-md p-2"
+
+                />
+            </div>
+
+            <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Abilities</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 align-middle pt-2 px-5">
+                {pokemonDetails.abilities?.map((pokemon: Pokemon, index: number) => {
+                    return (
+                        <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
+                            {/* {index + 1}. */}
+                              {pokemon?.ability?.name}
+                        </div>
+                    )
+                })}
+            </div>
             <div >
                 <div>
-                    <div>
-                        <h1 className="pb-1 text-gray-900 font-bold">Abilities</h1>
-                        <div className='pl-5'>
-                            {pokemonDetails.abilities?.map((pokemon: Pokemon, index:number) => {
-                                return (
-                                    <div key={index}>
-                                        {index + 1}.  {pokemon?.ability?.name}
-                                    </div>
-                                )
-                            })}
-                        </div>
 
-                    </div>
-                    <div>
-                        <h1 className="pb-1 text-gray-900 font-bold">Types</h1>
-                        <div className='pl-5'>
-                            {pokemonDetails.types?.map((pokemon: Pokemon, index: number) => {
-
-                                return (
-                                    <div className='text-gray-900' key={index}>
-                                        {/* <li>  {pokemon?.name}</li> */}
-                                        {index + 1}. {pokemon?.type?.name}
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
                 </div>
 
                 <div>
-                    <div>
-                        <h1 className="pb-1 text-gray-900 font-bold">Stats</h1>
-                        <div className='pl-5'>
-                            {pokemonDetails.stats?.map((pokemon: Pokemon, index: number) => {
+                    <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Stats</h1>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 align-middle pt-2 px-5">
+                        {pokemonDetails.stats?.map((pokemon: Pokemon, index: number) => {
 
-                                return (
-                                    <div key={index} className='text-gray-900'>
-                                        {index + 1}.  {pokemon?.stat?.name}
+                            return (
+                                <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
 
-                                    </div>
-                                )
-                            })}
-                            
-                        </div>
+                                    {/* {index + 1}.  */}
+                                     {pokemon?.stat?.name}
+
+                                </div>
+                            )
+                        })}
                     </div>
-                    <div>
-                        <h1 className="pb-1 text-gray-900 font-bold">Moves</h1>
-                        <div className='pl-5'>
-                            {pokemonDetails.moves?.map((pokemon: any, index: any) => {
 
-                                return (
-                                    <div key={index} className='text-gray-900'>
-                                        {/* <li>  {pokemon?.name}</li> */}
-                                        <div>{index + 1}. {pokemon?.move?.name}</div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div>
+                <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Types</h1>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 align-middle pt-2 px-5">
+                    {pokemonDetails.types?.map((pokemon: Pokemon, index: number) => {
+
+                        return (
+                            <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
+                                {/* <li>  {pokemon?.name}</li> */}
+                                {/* {index + 1}. */}
+                                 {pokemon?.type?.name}
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+            <div>
+                <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Moves</h1>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 align-middle pt-2 px-5">
+                    {pokemonDetails.moves?.map((pokemon: any, index: any) => {
+
+                        return (
+                            <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200">
+                                {/* <li>  {pokemon?.name}</li> */}
+                                <div className="px-1 text-xl">
+                                    {/* {index + 1}.  */}
+                                    {pokemon?.move?.name}</div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
