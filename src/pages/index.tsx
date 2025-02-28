@@ -40,12 +40,10 @@ export default function Home({ pokemon }: any) {
         />
       </div>
       <ul>
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 align-middle pt-2 px-5">
           {filteredPokemon?.map((pokemon: Pokemon, index: number) => {
-
             return (
-
-
               <div onClick={() => {
                 router.push(`/Pokemon/${index + 1}?name=${encodeURIComponent(pokemon?.name)}`);
               }}
@@ -59,19 +57,16 @@ export default function Home({ pokemon }: any) {
                     width={80}
                     height={80}
                     className="align-center w-full"
-
                   />
                   <h1 className="text-center  w-full relative -top-4 font-bold text-xl "> {pokemon?.name}</h1>
                 </div>
               </div>
-
             )
           })}
         </div>
-{ 
-  filteredPokemon?.length === 0 && (  <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3">No Pokemon Found</h1>)
-}
-    
+        {
+          filteredPokemon?.length === 0 && (<h1 className="pb-1 text-gray-900 font-bold px-5 pt-3">No Pokemon Found</h1>)
+        }
       </ul>
     </div>
   );

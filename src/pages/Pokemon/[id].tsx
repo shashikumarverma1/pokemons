@@ -42,8 +42,7 @@ const PokemonDetail = ({ pokemonDetails }: { pokemonDetails: pokemonDetails }) =
                     alt={`${name}`}
                     width={200}
                     height={200}
-                className="align-center bg-gray-200 rounded-md p-2"
-
+                    className="align-center bg-gray-200 rounded-md p-2"
                 />
             </div>
 
@@ -53,33 +52,25 @@ const PokemonDetail = ({ pokemonDetails }: { pokemonDetails: pokemonDetails }) =
                     return (
                         <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
                             {/* {index + 1}. */}
-                              {pokemon?.ability?.name}
+                            {pokemon?.ability?.name}
                         </div>
                     )
                 })}
             </div>
-            <div >
-                <div>
+            <div>
+                <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Stats</h1>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 align-middle pt-2 px-5">
+                    {pokemonDetails.stats?.map((pokemon: Pokemon, index: number) => {
 
+                        return (
+                            <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
+                                {pokemon?.stat?.name}
+
+                            </div>
+                        )
+                    })}
                 </div>
 
-                <div>
-                    <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Stats</h1>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 align-middle pt-2 px-5">
-                        {pokemonDetails.stats?.map((pokemon: Pokemon, index: number) => {
-
-                            return (
-                                <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
-
-                                    {/* {index + 1}.  */}
-                                     {pokemon?.stat?.name}
-
-                                </div>
-                            )
-                        })}
-                    </div>
-
-                </div>
             </div>
             <div>
                 <h1 className="pb-1 text-gray-900 font-bold px-5 pt-3 text-2xl">Types</h1>
@@ -90,7 +81,7 @@ const PokemonDetail = ({ pokemonDetails }: { pokemonDetails: pokemonDetails }) =
                             <div key={index} className="overflow-hidden transition-all hover:shadow-lg cursor-pointer rounded-md p-2 bg-gray-200 px-3 text-xl">
                                 {/* <li>  {pokemon?.name}</li> */}
                                 {/* {index + 1}. */}
-                                 {pokemon?.type?.name}
+                                {pokemon?.type?.name}
                             </div>
                         )
                     })}
