@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 step-1 <br/>
 clone the repo  <br/>
-https://github.com/shashikumarverma1/pokemons  <br/>
+run in terminal  <br/> git clone https://github.com/shashikumarverma1/pokemons  <br/>
 step-2  <br/>
 install environment like node npm or yarn  <br/>
 step-3  <br/>
