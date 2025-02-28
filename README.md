@@ -1,16 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
-step-1 
-clone the repo 
-https://github.com/shashikumarverma1/pokemons
-step-2
-install environment like node npm or yarn
-step-3
-install dependency
-run -> npm install
-step-4
-run-5
+step-1 <br/>
+clone the repo  <br/>
+https://github.com/shashikumarverma1/pokemons  <br/>
+step-2  <br/>
+install environment like node npm or yarn  <br/>
+step-3  <br/>
+install dependency  <br/>
+run -> npm install  <br/>
+step-4  <br/>
 
 npm run dev
 # or
