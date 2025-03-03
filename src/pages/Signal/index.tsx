@@ -18,7 +18,7 @@ export default function Home() {
 const [Loading , setLoading] = useState<boolean>(true);
   useEffect(() => {
       async function fetchData() {
-          const response = await fetch('/api/price', {
+          const response = await fetch('/api/trade', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const [Loading , setLoading] = useState<boolean>(true);
   return (
       <div>
           <h1>Price Data</h1>
-          <p>Price: {data.price}</p>
+          <p>Price: {data.message}</p>
           <p>Stop-Loss: {data.sl}</p>
       </div>
   );
