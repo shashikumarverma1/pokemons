@@ -43,9 +43,9 @@ const [Loading , setLoading] = useState<boolean>(true);
 
   return (
       <div>
-          <h1>Price Data</h1>
+       
           <p>Price: {data.message}</p>
-          <p>Stop-Loss: {data.sl}</p>
+      
       </div>
   );
 }
